@@ -254,3 +254,7 @@ void intercalaLista(DList *dlist1, DList *dlist2, DList *dlist3){
         }
     }
 }
+
+void deletaRepetidos(DList *dlist1){
+    
+}
