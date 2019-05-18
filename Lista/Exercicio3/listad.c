@@ -100,8 +100,32 @@ void insertFist(DList *dlist, Info *info){
         dlist->first = ptr;
         ptr->prev = NULL;
         ptr->next = aux;
+        aux->prev = ptr;
     }
     dlist->size++;
+}
+
+void insertPos(DList *dlist, Info *info, int pos){
+    Node *ptr, *aux;
+    int i= 1;
+    if(!dlist) return;
+    ptr = (Node *)malloc(sizeof(Node));
+    if(!ptr) return;
+    if(pos > dlist->size || pos < 1){
+        free(ptr);
+        return;
+    }
+    if(pos == 1)
+        insertFist(dlist, info);
+    else {
+        for(aux=dlist->first;i<pos;aux=aux->next,i++);
+        ptr->prev = aux->prev;
+        ptr->next = aux;
+        aux->prev->next = ptr;
+        if(aux->next)
+            aux->next->prev = ptr;
+    }
+    ptr->info = info;
 }
 
 int deleteFirst(DList *dlist){
