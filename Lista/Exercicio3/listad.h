@@ -30,6 +30,8 @@ void insertLast(DList *dlist,Info *info);
 
 void insertFist(DList *dlist, Info *info);
 
+void insertPos(DList *dlist, Info *info, int pos);
+
 int deleteFirst(DList *dlist);
 
 int deleteLast(DList *dlist);

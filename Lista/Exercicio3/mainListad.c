@@ -4,7 +4,7 @@
 int main(){
     DList *dlist;
     Info *info;
-    int quant = 5,i=0;
+    int quant = 5,i=0, value;
     dlist = createDList();
     if(dlist){
         while(i<quant){
@@ -15,6 +15,9 @@ int main(){
         }
         info = createInfo();
         insertLast(dlist, info);
+        imprimeDList(dlist);
+        value = deleteLast(dlist);
+        printf("Delete last:  %d \n",value);
         imprimeDList(dlist);
     }else{
         printf("\nA lista não pôde ser criada\n");

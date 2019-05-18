@@ -104,18 +104,34 @@ void insertFist(DList *dlist, Info *info){
     dlist->size++;
 }
 
-int deleteLast(DList *dlist){
+int deleteFirst(DList *dlist){
     Node *ptr, *aux;
     int info;
-    if(!dlist || dlist->size == 0) return;
+    if(!dlist || dlist->size == 0) return 0;
     if(dlist->size == 1){
         ptr = dlist->first;
         dlist->first = NULL;
     } else {
-        for(aux=dlist->first;aux->next;aux=aux->next){
-            ptr=aux->next;
-            ptr->prev->next = NULL;
-        }
+        ptr = dlist->first;
+        ptr->next->prev = NULL;
+        dlist->first = dlist->first->next;
+    }
+    info = ptr->info->info;
+    free(ptr);
+    return info;
+}
+
+int deleteLast(DList *dlist){
+    Node *ptr, *aux;
+    int info;
+    if(!dlist || dlist->size == 0) return 0;
+    if(dlist->size == 1){
+        ptr = dlist->first;
+        dlist->first = NULL;
+    } else {
+        for(aux=dlist->first;aux->next;aux=aux->next);
+        ptr=aux;
+        ptr->prev->next = NULL;
     }
     info = ptr->info->info;
     free(ptr);
