@@ -24,7 +24,9 @@ Info *createInfo(); //ok
 
 void imprimeDList(DList *dlist); //ok
 
-int buscaOrdenada(DList *dlist, Info *info); 
+int buscaOrdenada(DList *dlist, int value); 
+
+int buscaDesordenada(DList *dlist, int value);
 
 void insertLast(DList *dlist,Info *info); //ok
 
@@ -36,6 +38,10 @@ int deleteFirst(DList *dlist); //ok
 
 int deleteLast(DList *dlist); //ok
 
-void deletePos(DList *dlist, int pos);
+int deletePos(DList *dlist, int pos); //ok
+
+void intercalaLista(DList *dlist1, DList *dlist2, DList *dlist3);
+
+
 
 #endif // __LISTAD_H__

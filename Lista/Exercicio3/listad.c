@@ -167,6 +167,90 @@ int deleteLast(DList *dlist){
     return info;
 }
 
-void deletePos(DList *dlist, int pos){
+int deletePos(DList *dlist, int pos){
+    Node *aux;
+    int value, i;
+    if(!dlist || pos < 1 || pos > dlist->size || dlist->size == 0) return 0;
+    if(pos == 1){
+       return deleteFirst(dlist);
+    } else if(pos == dlist->size)
+        return deleteLast(dlist);
+    else {
+        for(aux=dlist->first, i=1; i<pos; aux = aux->next,i++);
+        if(aux->next){
+            aux->prev->next = aux->next;
+            aux->next->prev = aux->prev;
+        }else{
+            aux->prev->next = NULL;
+        }
+    }
+    dlist->size--;
+    value = aux->info->info;
+    free(aux);
+    return value;
+}
 
+void intercalaLista(DList *dlist1, DList *dlist2, DList *dlist3){
+    Node *aux1, *aux2, *ptr, *ptrAnt;
+    if(!dlist1 || !dlist2 || !dlist3 || dlist1->size == 0 || dlist2->size == 0) return;
+    int size3;
+    if(dlist1->size >= dlist2->size){
+        aux2=dlist2->first;
+        for(aux1=dlist1->first; aux1; aux1=aux1->next){
+            if(ptr) ptrAnt = ptr;
+            ptr = (Node *)malloc(sizeof(Node));
+            if(!dlist3->first) dlist3->first = ptr;
+            ptr->info = aux1->info;
+            ptr->next = NULL;
+            ptr->prev = NULL;
+            dlist3->size++;
+            if(dlist3->size != 1){
+                ptr->prev = ptrAnt;
+                ptr->prev->next = ptr;
+            }
+            if(aux2){
+                ptrAnt = ptr;
+                ptr = (Node *)malloc(sizeof(Node));
+                ptr->info = aux2->info;
+                ptr->next = NULL;
+                ptr->prev = ptrAnt;
+                ptr->prev->next = ptr;
+                dlist3->size++;
+                aux2=aux2->next;
+            }
+        }
+    } else {
+        aux2=dlist2->first;
+        for(aux1=dlist1->first; aux1; aux1=aux1->next){
+            if(ptr) ptrAnt = ptr;
+            ptr = (Node *)malloc(sizeof(Node));
+            if(!dlist3->first) dlist3->first = ptr;
+            ptr->info = aux1->info;
+            ptr->next = NULL;
+            ptr->prev = NULL;
+            dlist3->size++;
+            if(dlist3->size != 1){
+                ptr->prev = ptrAnt;
+                ptr->prev->next = ptr;
+            }
+            ptrAnt = ptr;
+            ptr = (Node *)malloc(sizeof(Node));
+            ptr->info = aux2->info;
+            ptr->next = NULL;
+            ptr->prev = ptrAnt;
+            ptr->prev->next = ptr;
+            dlist3->size++;
+            aux2=aux2->next;
+        }
+        while(aux2){
+            ptrAnt = ptr;
+            ptr = (Node *)malloc(sizeof(Node));
+            ptr->info = aux2->info;
+            ptr->next = NULL;
+            ptr->prev = ptrAnt;
+            ptr->prev->next = ptr;
+            dlist3->size++;
+            aux2=aux2->next;
+        }
+    }
 }
