@@ -13,7 +13,28 @@ DList *createDList(){
     } else return NULL;
 }
 
-int buscaOrdenada(DList *dlist, Info *info){
+Info *createInfo(){
+    Info *info;
+    int value;
+    info = (Info *)malloc(sizeof(Info));
+    if (!info) return NULL;
+    printf("\nDigite o valor da informação: ");
+    scanf("%d",&value);
+    info->info = value;
+    return info;
+}
+
+void imprimeDList(DList *dlist){
+    Node *ptr;
+    if(!dlist || dlist->size == 0) return;
+    printf("\nINICIO [ ");
+    for(ptr=dlist->first;ptr;ptr=ptr->next){
+        printf("%d ",ptr->info->info);
+    }
+    printf("] FIM\n");
+}
+
+// int buscaOrdenada(DList *dlist, Info *info){
 //     Node *aux;
 //     if(!dlist || dlist->size == 0) return NULL;
 //     int divisao, i = 0, j, posicaoMenor = 1, posicaoMaior, posicao, size, info, ordenacao;
@@ -45,36 +66,58 @@ int buscaOrdenada(DList *dlist, Info *info){
 //     }
 // }
 
-// void insertLast(DList *dlist,Info *info){
-//     Node *ptr, *aux;
-//     if(!dlist || !(ptr=(Node *)malloc(sizeof(Node)))) return ;
-//     ptr->info = info;
-//     ptr->next = NULL;
-//     //se for vazia
-//     if(dlist->size == 0){
-//         dlist->first = ptr;
-//         ptr->prev = NULL;
-//     } else {
-//         for(aux = dlist->first ; aux->next != NULL; aux = aux->next);
-//         aux->next = ptr;
-//         ptr->prev = aux;
-//     }
-    return 0;
+void insertLast(DList *dlist,Info *info){
+    Node *ptr, *aux;
+    ptr=(Node *)malloc(sizeof(Node));
+    if(!dlist || !ptr) return;
+    ptr->info = info;
+    ptr->next = NULL;
+    //se for vazia
+    if(dlist->size == 0){
+        dlist->first = ptr;
+        ptr->prev = NULL;
+    } else if(dlist->size == 1) {
+        dlist->first->next = ptr;
+    }else{
+        for(aux = dlist->first ; aux->next; aux = aux->next);
+        aux->next = ptr;
+        ptr->prev = aux;
+    }
 }
 
 void insertFist(DList *dlist, Info *info){
     Node *ptr, *aux;
-    if(!dlist || !(ptr=(Node *)malloc(sizeof(Node)))) return;
+    ptr = (Node *)malloc(sizeof(Node));
+    if(!dlist || !ptr) return;
     ptr->info = info;
     //se for vazia
     if(dlist->size == 0){
         dlist->first = ptr;
         ptr->prev = NULL;
+        ptr->next = NULL;
     } else {
-        
+        aux = dlist->first;
+        dlist->first = ptr;
+        ptr->prev = NULL;
+        ptr->next = aux;
     }
+    dlist->size++;
 }
 
-void deleteLast(DList *dlist,Info *info){
-
+int deleteLast(DList *dlist){
+    Node *ptr, *aux;
+    int info;
+    if(!dlist || dlist->size == 0) return;
+    if(dlist->size == 1){
+        ptr = dlist->first;
+        dlist->first = NULL;
+    } else {
+        for(aux=dlist->first;aux->next;aux=aux->next){
+            ptr=aux->next;
+            ptr->prev->next = NULL;
+        }
+    }
+    info = ptr->info->info;
+    free(ptr);
+    return info;
 }

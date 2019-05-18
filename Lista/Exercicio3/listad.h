@@ -20,12 +20,22 @@ typedef struct {
 
 DList *createDList();
 
+Info *createInfo();
+
+void imprimeDList(DList *dlist);
+
 int buscaOrdenada(DList *dlist, Info *info);
 
 void insertLast(DList *dlist,Info *info);
 
 void insertFist(DList *dlist, Info *info);
 
-void deleteLast(DList *dlist,Info *info);
+int deleteFirst(DList *dlist);
+
+int deleteLast(DList *dlist);
+
+void deleteValue(DList *dlist, int value);
+
+void deletePos(DList *dlist, int pos);
 
 #endif // __LISTAD_H__
