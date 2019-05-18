@@ -18,23 +18,23 @@ typedef struct {
     Node *first;
 }DList;
 
-DList *createDList();
+DList *createDList(); //ok
 
-Info *createInfo();
+Info *createInfo(); //ok
 
-void imprimeDList(DList *dlist);
+void imprimeDList(DList *dlist); //ok
 
-int buscaOrdenada(DList *dlist, Info *info);
+int buscaOrdenada(DList *dlist, Info *info); 
 
-void insertLast(DList *dlist,Info *info);
+void insertLast(DList *dlist,Info *info); //ok
 
-void insertFist(DList *dlist, Info *info);
+void insertFist(DList *dlist, Info *info); //ok
 
-void insertPos(DList *dlist, Info *info, int pos);
+void insertPos(DList *dlist, Info *info, int pos); //ok
 
-int deleteFirst(DList *dlist);
+int deleteFirst(DList *dlist); //ok
 
-int deleteLast(DList *dlist);
+int deleteLast(DList *dlist); //ok
 
 void deleteValue(DList *dlist, int value);
 

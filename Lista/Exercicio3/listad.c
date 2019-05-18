@@ -78,11 +78,13 @@ void insertLast(DList *dlist,Info *info){
         ptr->prev = NULL;
     } else if(dlist->size == 1) {
         dlist->first->next = ptr;
+        ptr->prev = dlist->first;
     }else{
         for(aux = dlist->first ; aux->next; aux = aux->next);
         aux->next = ptr;
         ptr->prev = aux;
     }
+    dlist->size++;
 }
 
 void insertFist(DList *dlist, Info *info){
@@ -126,6 +128,7 @@ void insertPos(DList *dlist, Info *info, int pos){
             aux->next->prev = ptr;
     }
     ptr->info = info;
+    dlist->size++;
 }
 
 int deleteFirst(DList *dlist){

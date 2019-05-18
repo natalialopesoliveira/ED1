@@ -9,7 +9,7 @@ int main(){
     if(dlist){
         while(i<quant){
             info = createInfo();
-            insertFist(dlist, info);
+            insertLast(dlist, info);
             imprimeDList(dlist);
             i++;
         }
