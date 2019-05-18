@@ -145,6 +145,7 @@ int deleteFirst(DList *dlist){
     }
     info = ptr->info->info;
     free(ptr);
+    dlist->size--;
     return info;
 }
 
@@ -162,5 +163,10 @@ int deleteLast(DList *dlist){
     }
     info = ptr->info->info;
     free(ptr);
+    dlist->size--;
     return info;
+}
+
+void deletePos(DList *dlist, int pos){
+
 }

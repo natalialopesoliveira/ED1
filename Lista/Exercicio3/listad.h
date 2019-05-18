@@ -36,8 +36,6 @@ int deleteFirst(DList *dlist); //ok
 
 int deleteLast(DList *dlist); //ok
 
-void deleteValue(DList *dlist, int value);
-
 void deletePos(DList *dlist, int pos);
 
 #endif // __LISTAD_H__

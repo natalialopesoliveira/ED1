@@ -18,9 +18,11 @@ int main(){
         imprimeDList(dlist);
         value = deleteLast(dlist);
         printf("Delete last:  %d \n",value);
+        value = deleteFirst(dlist);
+        printf("Delete first:  %d \n",value);
         imprimeDList(dlist);
         info = createInfo();
-        insertPos(dlist, info, 5);
+        insertPos(dlist, info, 4);
         imprimeDList(dlist);
     }else{
         printf("\nA lista não pôde ser criada\n");
