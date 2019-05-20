@@ -1,0 +1,30 @@
+#ifndef __BINTREE_H__
+#define __BINTREE_H__
+
+typedef struct{
+    int info;
+}Info;
+
+typedef struct bt{
+    struct bt *left;
+    Info *info;
+    struct bt *right;
+}bintree;
+
+//1)
+bintree *createBT(Info *info);
+//2)
+bintree *leftBT(bintree *bt);
+//3)
+bintree *rightBT(bintree *bt);
+//4)
+Info * rootBT(bintree *bt);
+//5)
+int isEmptyBT(bintree *bt);
+//6)
+int isInBT(bintree *bt,Info *info);
+
+Info *createInfo(int info);
+void insertLeftBT(bintree *bt, Info *info);
+void insertRightBT(bintree *bt, Info *info);
+#endif //__BINTREE_H__
