@@ -66,6 +66,10 @@ void imprimeDList(DList *dlist){
 //     }
 // }
 
+int buscaDesordenada(DList *dlist, int value){
+    
+}
+
 void insertLast(DList *dlist,Info *info){
     Node *ptr, *aux;
     ptr=(Node *)malloc(sizeof(Node));
