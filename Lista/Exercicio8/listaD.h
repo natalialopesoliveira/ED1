@@ -1,5 +1,5 @@
-#ifndef __LIST_H__
-#define __LIST_H__
+#ifndef __LISTD_H__
+#define __LISTD_H__
 
 typedef struct{
     char info;
@@ -7,7 +7,7 @@ typedef struct{
 
 typedef struct tno{
     Info *info;
-    struct tno *next;
+    struct tno *prev, *next;
 }Node;
 
 typedef struct{
