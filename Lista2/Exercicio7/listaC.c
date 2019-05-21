@@ -7,7 +7,7 @@ Node *createNode(int valor){
     ptr = (Node *)malloc(sizeof(Node));
     if(!ptr) return NULL;
     ptr->valor = valor;
-    ptr->prox = ptr;
+    ptr->prox = NULL;
     return ptr;
 
 }
@@ -17,15 +17,30 @@ void insertLast(Node *inicio, Node *ultimo, int valor){
     if(!inicio) return;
     ptr = createNode(valor);
     if(!ptr) return;
+    if(inicio == ultimo){
+        //printNode(ptr);
+        ptr->prox = inicio;
+        inicio->prox = ptr;
+        printNode(ultimo);
+        ultimo = ptr;
+    } else{
+        ptr->prox = inicio;
+        ultimo->prox = ptr;
+        ultimo = ptr;
+    }
+    // ptr->prox = inicio;
+    // ultimo->prox = ptr;
+    // ultimo = ptr;
     //..
 }
 
 void printList(Node *inicio){
     Node *aux;
-    printf("\nINICIO [ ");
-    if(!inicio){
-        printf("] FIM\n");
-        return;
+    aux = inicio;
+    while(inicio!=NULL){
+        printf("[%d]-",aux->valor);
+        if(aux->prox == inicio) break;
+        aux = aux->prox;
     }
     //..
 }
@@ -33,9 +48,9 @@ void printList(Node *inicio){
 void printNode(Node *node){
     if(!node) return;
     printf("\nNode: [ %d ]", node->valor);
-    if(node->prox){
-        printf("\nNode->prox: [ %d ]", node->prox->valor);
-    }else{
-        printf("\nNode->prox: [ ]");
-    }
+    // if(node->prox){
+    //     printf("\nNode->prox: [ %d ]", node->prox->valor);
+    // }else{
+    //     printf("\nNode->prox: [ ]");
+    // }
 }

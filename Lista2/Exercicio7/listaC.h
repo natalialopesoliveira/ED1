@@ -6,7 +6,7 @@ typedef struct tno{
     struct tno *prox;
 }Node;
 
-Node *createNode();
+Node* createNode(int valor);
 void insertFirst(Node *inicio, Node *ultimo, int valor);
 int removeFirst(Node *inicio, Node *ultimo);
 void insertLast(Node *inicio, Node *ultimo, int valor);
