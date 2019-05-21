@@ -3,41 +3,25 @@
 // cd "/Users/onatalia86/Documents/ED1/Lista2/Exercicio7/" && gcc -lstdc++ mainTeste.c -o mainTeste && "/Users/onatalia86/Documents/ED1/Lista2/Exercicio7/"mainTeste
 int main(){
     Node *inicio, *ultimo;
+    int i;
     inicio = NULL;
     ultimo = NULL;
 
     inicio = createNode(1);
     ultimo = inicio;
     // printList(inicio);
+    insertFirst(&inicio, &ultimo, 0);
     insertLast(inicio, &ultimo, 2);
-    printf("\n\nUltimo depois da insertLast\n\n");
-    printNode(ultimo);
     insertLast(inicio, &ultimo, 3);
+    insertFirst(&inicio, &ultimo, -1);
     insertLast(inicio, &ultimo, 4);
+    insertFirst(&inicio, &ultimo, -2);
     insertLast(inicio, &ultimo, 5);
-
-    // Node *a,*b,*c,*d;
-    //
-    // a = createNode(1);
-    //
-    // b = createNode(2);
-    //
-    // c = createNode(3);
-    //
-    // d = createNode(4);
-    //
-    // a->prox = b;
-    // b->prox = c;
-    // c->prox = d;
-    // d->prox = a;
-    // inicio = a;
-    // ultimo = d;
-    // printList(inicio);
-    // printf("\n" );
-    //
-    // insertLast(inicio,ultimo,5);
-    //
-    // printList(inicio);
+    insertFirst(&inicio, &ultimo, -3);
+    printList(inicio);
+    i = removeFirst(&inicio, &ultimo);
+    printf("\n\n%d\n\n",i);
+    printList(inicio);
 
     return 0;
 }
