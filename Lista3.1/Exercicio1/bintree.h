@@ -23,6 +23,11 @@ Info * rootBT(bintree *bt);
 int isEmptyBT(bintree *bt);
 //6)
 int isInBT(bintree *bt,Info *info);
+//7)
+void destroyBT(bintree *bt);
+//8)
+int heightBT(bintree *bt);
+
 
 Info *createInfo(int info);
 void insertLeftBT(bintree *bt, Info *info);

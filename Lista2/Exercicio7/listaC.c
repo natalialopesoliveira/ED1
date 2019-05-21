@@ -12,21 +12,24 @@ Node *createNode(int valor){
 
 }
 
-void insertLast(Node *inicio, Node *ultimo, int valor){
+void insertLast(Node *inicio, Node **ultimo, int valor){
     Node *ptr, *aux;
     if(!inicio) return;
     ptr = createNode(valor);
     if(!ptr) return;
-    if(inicio == ultimo){
+    if(inicio == *ultimo){
         //printNode(ptr);
         ptr->prox = inicio;
         inicio->prox = ptr;
-        printNode(ultimo);
-        ultimo = ptr;
+        printf("\n\nUltimo dentro - antes insertLast\n\n");
+        printNode(*ultimo);
+        *ultimo = ptr;
+        printf("\n\nUltimo dentro - depois insertLast\n\n");
+        printNode(*ultimo);
     } else{
         ptr->prox = inicio;
-        ultimo->prox = ptr;
-        ultimo = ptr;
+        (*ultimo)->prox = ptr;
+        *ultimo = ptr;
     }
     // ptr->prox = inicio;
     // ultimo->prox = ptr;

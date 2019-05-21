@@ -8,11 +8,13 @@ int main(){
 
     inicio = createNode(1);
     ultimo = inicio;
-    printList(inicio);
-    insertLast(inicio, ultimo, 2);
-    insertLast(inicio, ultimo, 3);
-    insertLast(inicio, ultimo, 4);
-    insertLast(inicio, ultimo, 5);
+    // printList(inicio);
+    insertLast(inicio, &ultimo, 2);
+    printf("\n\nUltimo depois da insertLast\n\n");
+    printNode(ultimo);
+    insertLast(inicio, &ultimo, 3);
+    insertLast(inicio, &ultimo, 4);
+    insertLast(inicio, &ultimo, 5);
 
     // Node *a,*b,*c,*d;
     //
@@ -35,7 +37,7 @@ int main(){
     //
     // insertLast(inicio,ultimo,5);
     //
-    printList(inicio);
+    // printList(inicio);
 
     return 0;
 }

@@ -49,6 +49,17 @@ int isInBT(bintree *bt,Info *info){
     else return 0;
 }
 
+//7)
+void destroyBT(bintree *bt){
+    if(!bt) return;
+    if(leftBT(bt)) destroyBT(leftBT(bt));
+    if(right(bt)) destroyBT(rightBT(bt));
+    free(bt);
+}
+//8)
+int heightBT(bintree *bt){
+    
+}
 //outros
 
 Info *createInfo(int info){
