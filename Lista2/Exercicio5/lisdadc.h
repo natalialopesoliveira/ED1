@@ -8,15 +8,15 @@ typedef struct tno{
 
 Node *createNode(); //sim
 
-void insertFirst(Node *first); //nao
+void insertFirst(Node **first); //sim
 
-int removeFirst(Node *first); //nao
+int removeFirst(Node **first); //sim
 
-void insertLast(Node *first); //sim
+void insertLast(Node **first); //sim
 
-int removeLast(Node *first); //sim
+int removeLast(Node **first); //sim
 
-void removeInfo(Node *first, int info); //nao
+void removeInfo(Node **first, int info); //nao
 
 void printDList(Node *first); //sim
 

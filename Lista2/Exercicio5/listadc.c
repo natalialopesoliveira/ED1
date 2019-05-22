@@ -15,103 +15,95 @@ Node *createNode(){
     return ptr;
 }
 
-void insertFirst(Node *first){
+void insertFirst(Node **first){
     Node *ptr, *aux;
     ptr = createNode();
     if(!ptr) return;
-    printf("\n\nNode criado: \n");
-    printNode(ptr);
-    printf("\n=============\n");
-    if(!first){
-        first = ptr;
+    if(!(*first)){
+        *first = ptr;
         return;
-    } else if (first->next == first) {
-        aux = first;
-        first = ptr;
-        printf("\n\nNode first assumido: \n");
-        printNode(first);
-        printf("\n=============\n");
-        first->next = aux;
-        first->prev = aux;
-        first->next->next = first;
-        first->next->prev = first;
+    } else if ((*first)->next == *first) {
+        aux = *first;
+        *first = ptr;
+        (*first)->next = aux;
+        (*first)->prev = aux;
+        (*first)->next->next = *first;
+        (*first)->next->prev = *first;
     } else {
-        aux = first;
-        first = ptr;
-        first->next = aux;
-        first->prev = aux->prev;
-        first->prev->next = first;
-        first->next->prev = first;
+        aux = *first;
+        *first = ptr;
+        (*first)->next = aux;
+        (*first)->prev = aux->prev;
+        (*first)->prev->next = *first;
+        (*first)->next->prev = *first;
     }
 }
 
-int removeFirst(Node *first){
+int removeFirst(Node **first){
     Node *aux;
     int info;
-    if(!first) return 0;
-    aux = first;
-    if(first->next == first){
-        first = NULL;
+    if(!(*first)) return 0;
+    aux = *first;
+    if((*first)->next == *first){
+        *first = NULL;
     } else {
-        first = first->next;
-        first->prev = aux->prev;
+        aux->prev->next = aux->next;
+        aux->next->prev = aux->prev;
+        *first = (*first)->next;
     }
     info = aux->info;
     free(aux);
     return info;
 }
 
-void insertLast(Node *first){
+void insertLast(Node **first){
     Node *ptr, *aux;
     ptr = createNode();
     if(!ptr) return;
-    if(!first){
-        first = ptr;
+    if(!(*first)){
+        *first = ptr;
         return;
-    } else if (first->next == first) {
-        first->prev = ptr;
-        first->next = ptr;
-        ptr->prev = first;
-        ptr->next = first;
-        first = ptr;
+    } else if ((*first)->next == *first) {
+        (*first)->prev = ptr;
+        (*first)->next = ptr;
+        ptr->prev = *first;
+        ptr->next = *first;
     } else {
-        first->prev->next = ptr;
-        ptr->prev = first->prev;
-        ptr->next = first;
-        first->prev = ptr;
-        first = ptr;
+        (*first)->prev->next = ptr;
+        ptr->prev = (*first)->prev;
+        ptr->next = *first;
+        (*first)->prev = ptr;
     }
 }
 
-int removeLast(Node *first){
+int removeLast(Node **first){
     Node *aux;
     int info;
-    if(!first) return 0;
-    if(first->next == first){
-        aux = first;
-        first = NULL;
+    if(!(*first)) return 0;
+    if((*first)->next == *first){
+        aux = *first;
+        *first = NULL;
     } else {
-        aux = first->prev;
-        first->prev = aux->prev;
-        aux->prev->next = first;
+        aux = (*first)->prev;
+        (*first)->prev = aux->prev;
+        aux->prev->next = (*first);
     }
     info = aux->info;
     free(aux);
     return info;
 }
 
-void removeInfo(Node *first, int info){
-    if(!first) return;
+void removeInfo(Node **first, int info){
+    if(!(*first)) return;
     Node *aux;
-    if(first->next == first){
-        // if(first->info == info) info=removeFirst(first);
-        if(first->info == info) removeFirst(first);
+    if((*first)->next == *first){
+        if((*first)->info == info) removeFirst(*first);
         return;
     } else {
-        for(aux = first->next; aux != first; aux = aux->next){
+        for(aux = (*first)->next; aux != *first; aux = aux->next){
             if(aux->info == info){
-                // info=removeFirst(first);
-                removeFirst(aux);
+                // info=removeFirst(*first);
+                removeFirst(&aux);
             }
         }
     }
@@ -121,7 +113,7 @@ void printDList(Node *first){
     printf("\nINICIO [ ");
     Node *aux;
     if(!first ){
-        printf("] FIM");
+        printf("] FIM\n");
         return;
     }
     if(first->next == first){
@@ -132,7 +124,7 @@ void printDList(Node *first){
             printf("%d ", aux->info);
         }
     }
-    printf("] FIM");
+    printf("] FIM\n");
 }
 
 void printNode(Node *node){
