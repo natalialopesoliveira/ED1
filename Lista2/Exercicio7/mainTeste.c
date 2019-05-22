@@ -11,17 +11,18 @@ int main(){
     ultimo = inicio;
     // printList(inicio);
     insertFirst(&inicio, &ultimo, 0);
-    insertLast(inicio, &ultimo, 2);
-    insertLast(inicio, &ultimo, 3);
+    insertLast(&inicio, &ultimo, 2);
+    insertLast(&inicio, &ultimo, 3);
     insertFirst(&inicio, &ultimo, -1);
-    insertLast(inicio, &ultimo, 4);
+    insertLast(&inicio, &ultimo, 4);
     insertFirst(&inicio, &ultimo, -2);
-    insertLast(inicio, &ultimo, 5);
+    insertLast(&inicio, &ultimo, 5);
     insertFirst(&inicio, &ultimo, -3);
     printList(inicio);
-    i = removeFirst(&inicio, &ultimo);
-    printf("\n\n%d\n\n",i);
+
+    removeInfo(&inicio, &ultimo, 4);
     printList(inicio);
+
 
     return 0;
 }

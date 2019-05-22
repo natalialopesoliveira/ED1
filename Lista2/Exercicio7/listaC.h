@@ -8,11 +8,11 @@ typedef struct tno{
 
 Node* createNode(int valor); //sim
 void insertFirst(Node **inicio, Node **ultimo, int valor); //sim
-int removeFirst(Node **inicio, Node **ultimo);
-void insertLast(Node *inicio, Node **ultimo, int valor); //sim
-int removeLast(Node *inicio, Node *ultimo);
-void removeInfo(Node *inicio, Node *ultimo, int valor);
-void printList(Node *inicio);
-void printNode(Node *node);
+int removeFirst(Node **inicio, Node **ultimo); //sim
+void insertLast(Node **inicio, Node **ultimo, int valor); //sim
+int removeLast(Node **inicio, Node **ultimo); //sim
+void removeInfo(Node **inicio, Node **ultimo, int valor); //sim
+void printList(Node *inicio); // sim
+void printNode(Node *node); //sim
 
 #endif // __LISTAC_H__

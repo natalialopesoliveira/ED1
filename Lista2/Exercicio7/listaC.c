@@ -32,7 +32,9 @@ void insertFirst(Node **inicio, Node **ultimo, int valor){
 
 int removeFirst(Node **inicio, Node **ultimo){
     int info;
+    Node *aux;
     if(!(*inicio)) return 0;
+    aux = *inicio;
     if(*inicio == *ultimo){
         info = (*inicio)->valor;
         *inicio = NULL;
@@ -42,28 +44,67 @@ int removeFirst(Node **inicio, Node **ultimo){
         info = (*inicio)->valor;
         (*inicio) = (*inicio)->prox;
     }
+    free(aux);
     return info;
 }
 
-void insertLast(Node *inicio, Node **ultimo, int valor){
+void insertLast(Node **inicio, Node **ultimo, int valor){
     Node *ptr, *aux;
-    if(!inicio) return;
+    if(!(*inicio)) return;
     ptr = createNode(valor);
     if(!ptr) return;
-    if(inicio == *ultimo){
+    if(*inicio == *ultimo){
         //printNode(ptr);
-        ptr->prox = inicio;
-        inicio->prox = ptr;
+        ptr->prox = *inicio;
+        (*inicio)->prox = ptr;
         *ultimo = ptr;
     } else{
-        ptr->prox = inicio;
+        ptr->prox = *inicio;
         (*ultimo)->prox = ptr;
         *ultimo = ptr;
     }
-    // ptr->prox = inicio;
-    // ultimo->prox = ptr;
-    // ultimo = ptr;
-    //..
+}
+
+int removeLast(Node **inicio, Node **ultimo){
+    int info;
+    Node *aux, *aux2;
+    if(!(*inicio)) return 0;
+    aux2 = *ultimo;
+    if(*inicio == *ultimo){
+        info = (*ultimo)->valor;
+        *ultimo = NULL;
+        *inicio = NULL;
+    }else{
+        for(aux = *inicio; aux->prox != *ultimo; aux = aux->prox);
+        aux->prox = (*inicio);
+        info = (*ultimo)->valor;
+        *ultimo = aux;
+    }
+    free(aux2);
+    return info;
+}
+
+void removeInfo(Node **inicio, Node **ultimo, int valor){
+    Node *aux, *aux2;
+    int i;
+    if(!inicio) return;
+    if(*inicio == *ultimo && (*inicio)->valor == valor){
+        removeFirst(inicio, ultimo);
+    } else if((*inicio)->valor == valor){
+        removeFirst(inicio, ultimo);
+    } else if((*ultimo)->valor == valor){
+        removeLast(inicio, ultimo);
+    }else{
+        for(aux = *inicio; aux->valor != valor && aux != *ultimo; aux = aux->prox){
+            if(aux->prox->valor == valor){
+                aux2 = aux->prox;
+                aux->prox = aux->prox->prox;
+                free(aux2);
+                return;
+            }
+        }
+    }
+    return;
 }
 
 void printList(Node *inicio){
