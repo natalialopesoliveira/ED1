@@ -1,6 +1,6 @@
 #include "list.c"
 
-// cd "/Users/onatalia86/Documents/ED1/Lista/Exercicio8/" && gcc -lstdc++ mainList.c -o mainList && "/Users/onatalia86/Documents/ED1/Lista/Exercicio8/"mainList
+// cd "/Users/onatalia86/Documents/ED1/Lista2/Exercicio8/" && gcc -lstdc++ mainList.c -o mainList && "/Users/onatalia86/Documents/ED1/Lista/Exercicio8/"mainList
 int main(){
     List *list = createList();
     Info *info3, *info2, *info = createInfo('a');

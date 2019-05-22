@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "list.h"
+#include "listaD.h"
 
 Node *createNode(){
     Node *ptr;
@@ -52,11 +52,12 @@ void insertLast(List *list, Info *info){
     ptr->info = info;
     if(list->size == 0){
         list->first = ptr;
+
     } else {
         aux = list->last;
         aux->next = ptr;
+        ptr->prev = aux;
     }
-
     list->last = ptr;
     list->size++;
 }
@@ -79,7 +80,7 @@ Info *infoList(List *list){
         printf("\nLista inexistente ou não há nenhuma janela.");
         return NULL;
     }
-    Node *aux, *aux2;
+    Node *aux;
     Info *info = list->window->info;
     if (list->first == list->last){
         aux = list->first;
@@ -89,6 +90,7 @@ Info *infoList(List *list){
     } else if(list->first == list->window){
         aux = list->first;
         list->first = aux->next;
+        aux->next->prev = NULL;
 
     } else if (list->last == list->window){
         for(aux = list->first; aux->next != list->window; aux = aux->next);
@@ -97,6 +99,7 @@ Info *infoList(List *list){
         aux = list->window;
     } else{
         for(aux = list->first; aux->next != list->window; aux = aux->next);
+        list->window->next->prev = aux;
         aux->next = list->window->next;
         aux = list->window;
     }
@@ -114,8 +117,9 @@ void printList(List *list){
         return;
     }
     Node *aux;
-    for(aux = list->first; aux; aux = aux->next){
+    for(aux = list->first; aux != list->last; aux = aux->next){
         printf("%c ", aux->info->info);
     }
+    printf("%c ", aux->info->info);
     printf("] FIM\n");
 }

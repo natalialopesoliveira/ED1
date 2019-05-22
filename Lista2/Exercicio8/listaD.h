@@ -15,13 +15,14 @@ typedef struct{
     int size;
 }List;
 
-Node *createNode();
+Node *createNode(); //sim
 // Info *createInfo();
-Info *createInfo(char inf);
-List *createList();
-void insertLast(List *list, Info *info);
-void posList(List *list, int pos);
-Info *infoList(List *list);
-void printList(List *list);
+Info *createInfo(char inf); //sim
+List *createList(); //sim
+void insertLast(List *list, Info *info); //sim
+void posList(List *list, int pos); //sim
+Info *infoList(List *list); //sim
+void printList(List *list); //sim
+List *ordenaList(List *list);
 
 #endif //__LIST_H__
