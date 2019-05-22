@@ -96,13 +96,13 @@ int removeLast(Node **first){
 void removeInfo(Node **first, int info){
     if(!(*first)) return;
     Node *aux;
-    if((*first)->next == *first){
-        if((*first)->info == info) removeFirst(*first);
+    if((*first)->info == info){
+        if((*first)->info == info)
+            removeFirst(first);
         return;
     } else {
         for(aux = (*first)->next; aux != *first; aux = aux->next){
             if(aux->info == info){
-                // info=removeFirst(*first);
                 removeFirst(&aux);
             }
         }

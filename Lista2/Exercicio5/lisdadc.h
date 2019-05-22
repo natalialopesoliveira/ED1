@@ -16,7 +16,7 @@ void insertLast(Node **first); //sim
 
 int removeLast(Node **first); //sim
 
-void removeInfo(Node **first, int info); //nao
+void removeInfo(Node **first, int info); //sim
 
 void printDList(Node *first); //sim
 

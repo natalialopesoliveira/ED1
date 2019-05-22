@@ -3,16 +3,9 @@
 int main(){
     Node *first = NULL;
     insertLast(&first);
-    insertLast(&first);
-    insertLast(&first);
-    insertLast(&first);
-    insertLast(&first);
-    insertLast(&first);
-    insertLast(&first);
-    insertLast(&first);
 
     printDList(first);
-    removeInfo(&first,5);
+    removeInfo(&first,1);
     printDList(first);
 
     return 0;
