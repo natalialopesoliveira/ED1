@@ -24,7 +24,7 @@ No *createNode(){
 void insertFirst(Lista *lista, int ch){
     No *ptr, *aux;
     if(!lista || !(ptr = createNode()))
-        return;
+    return;
     ptr->ch = ch;
     if(lista->inicio){
         aux = lista->inicio;
@@ -41,7 +41,7 @@ void insertFirst(Lista *lista, int ch){
 void insertLast(Lista *lista, int ch){
     No *ptr, *aux;
     if(!lista || !(ptr = createNode()))
-        return;
+    return;
     ptr->ch = ch;
     if(lista->fim){
         aux = lista->fim;
@@ -75,6 +75,67 @@ void removeInfo(Lista *lista, int ch){
             }
         }
     }
+}
+
+void insertPos(Lista *lista, int ch, int pos){
+    No *aux, *ptr;
+    int size=0;
+    int i;
+    if(!lista || (!lista->inicio && pos != 1)) return;
+    if(lista->inicio){
+        for(aux = lista->inicio; aux; aux = aux->prox){
+            size++;
+        }
+    } else size = 0;
+    if(pos > (size+1) || pos <= 0) return;
+    if(pos == 1) insertFirst(lista, ch);
+    else if(pos == (size+1)) insertLast(lista, ch);
+    else {
+        ptr = createNode();
+        if(!ptr) return;
+        ptr->ch = ch;
+        for(aux = lista->inicio, i = 1; i<pos; i++, aux = aux->prox);
+        ptr->ant = aux->ant;
+        ptr->prox = aux;
+        aux->ant->prox = ptr;
+        aux->ant = ptr;
+    }
+}
+
+void exchangeInfo(Lista *lista1, Lista *lista2, int ch1, int ch2){
+    if(!lista1 || !lista2 || ch1 == ch2) return;
+    int pos1, pos2;
+    pos1 = getPos(lista1, ch1);
+    pos2 = getPos(lista2, ch2);
+    if(pos1 != 0){
+        if(pos1 > getSize(lista2)) insertLast(lista2,ch1);
+        else insertPos(lista2, ch1, pos1);
+    }
+    if(pos2 != 0){
+        if(pos2 > getSize(lista1)) insertLast(lista1,ch2);
+        else insertPos(lista1, ch2, pos2);
+    }
+    removeInfo(lista1, ch1);
+    removeInfo(lista2, ch2);
+}
+
+int getPos(Lista *lista, int ch){
+    if(!lista || !lista->inicio) return 0;
+    int i=0;
+    No *aux;
+    for(aux = lista->inicio; aux; aux = aux->prox){
+        i++;
+        if(aux->ch == ch) return i;
+    }
+    return 0;
+}
+
+int getSize(Lista *lista){
+    if(!lista || !lista->inicio) return 0;
+    int size=0;
+    No *aux;
+    for(aux = lista->inicio; aux; aux = aux->prox, size++);
+    return size;
 }
 
 void printList(Lista *lista){
