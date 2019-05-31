@@ -32,7 +32,7 @@ int main(){
     // printList(lista);
     // insertPos(lista,2,7);
     // printList(lista);
-    exchangeInfo(lista, lista2, 2, 12);
+    exchangeInfo(lista, lista2, 1, 13);
     printList(lista);
     printList(lista2);
 

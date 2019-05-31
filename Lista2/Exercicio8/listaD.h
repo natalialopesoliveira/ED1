@@ -16,13 +16,13 @@ typedef struct{
 }List;
 
 Node *createNode(); //sim
-// Info *createInfo();
+Info *createInfo(); //sim
 Info *createInfo(char inf); //sim
 List *createList(); //sim
 void insertLast(List *list, Info *info); //sim
 void posList(List *list, int pos); //sim
 Info *infoList(List *list); //sim
 void printList(List *list); //sim
-List *ordenaList(List *list);
+List *ordenaList(List *list); //sim
 
 #endif //__LIST_H__

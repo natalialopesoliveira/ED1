@@ -123,3 +123,29 @@ void printList(List *list){
     printf("%c ", aux->info->info);
     printf("] FIM\n");
 }
+
+List *ordenaList(List *list){
+    if(!list || !list->first || list->size == 0) return NULL;
+    Node *aux = list->first, *aux2;
+    int i, j, size = list->size;
+    for(i=0; i<size; i++){
+        aux = list->first;
+        for(j=0; j<(size-i-1); j++){
+            aux2 = aux->next;
+            if(aux->info->info > aux2->info->info){
+                if(list->first == aux) list->first = aux2;
+                if(list->last == aux2) list->last = aux;
+                if(aux->prev) aux->prev->next = aux2;
+                if(aux2->next) aux2->next->prev = aux;
+                aux2->prev = aux->prev;
+                aux->next = aux2->next;
+                aux2->next = aux;
+                aux->prev = aux2;
+            }else{
+                aux = aux2;
+            }
+            printList(list);
+        }
+    }
+    return list;
+}
