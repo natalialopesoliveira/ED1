@@ -1,35 +1,50 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include <ctype.h>
+#include <string.h>
 #include "dlist.c"
 
-List *decodifica(List *list);
-void *inverteNos(Node *p, Node *q);
+void decodifica(List *list);
+void inverteNos(Node *p, Node *q);
 bool isVogal(char chave);
-int main(){
 
+int main(){
+    char frase[100];
+    int i;
+    List *list = createList();
+    printf("\nInsira a mensagem a ser decodificada: ");
+    gets(frase);
+    for(i =0; i<strlen(frase); i++){
+        insertLast(list, frase[i]);
+    }
+    printList(list);
+    decodifica(list);
+    // printList(list)
+    return 0;
 }
 
-List *decodifica(List *list){
+void decodifica(List *list){
     Node *aux, *aux2;
-    if (!list || list->size == 0) return NULL;
-    for(aux=list->first, aux2=list->first; aux, aux2; aux=aux->next){
+    if (!list || list->size == 0) return;
+    for(aux=list->first; aux; aux=aux->next){
         if(!isalpha(aux->chave) || !isVogal(aux->chave)){
-            aux2 = aux;
-            for(aux; ((!isVogal(aux)) || (!isalpha(aux->chave))) && aux; aux=aux->next);
+            *aux2 = *aux;
+
+            for(aux; ((!isVogal(aux->chave)) || (!isalpha(aux->chave))) && aux->next; aux=aux->next);
             inverteNos(aux2,aux);
+            printf("\n oieoie");
         }
     }
-    inverteLista(List *list);
-    return list;
+    // revertList(list);
 }
 
-void *inverteNos(Node *p, Node *q){
+void inverteNos(Node *p, Node *q){
     Node *prev = NULL, *current, *next, *first, *last;
     if(!p || !q) return;
-    first = p->prev;
-    last = q->next;
+    if(p->prev) first = p->prev;
+    else first = NULL;
+    // first = p->prev;
+    if(q->next) last = q->next;
+    else last = NULL;
     current = p;
     while(current != last){
         next = current->next;
@@ -44,5 +59,5 @@ void *inverteNos(Node *p, Node *q){
 
 bool isVogal (char chave){
     if(chave == 'A' || chave == 'E' || chave == 'I' || chave == 'O' || chave == 'U') return true;
-    else return false;
+    return false;
 }

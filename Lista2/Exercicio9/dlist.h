@@ -18,6 +18,10 @@ List *createList();
 
 Node *createNode();
 
+void insertLast(List *list, char ch);
+
 void revertList(List *list);
 
-#endif __DLIST_H__
+void printList(List *list);
+
+#endif // __DLIST_H__
