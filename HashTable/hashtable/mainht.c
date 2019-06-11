@@ -7,10 +7,12 @@
 
 int main()
 {
-	Node *hashtable[MAXSIZEHT];
+	//mudar para.. MODIFICAR TUDO
+	Hash hashtable[MAXSIZEHT];
+	// Node *hashtable[MAXSIZEHT];
 	char word[MAXSIZEW];
 	int resp,pos;
-	
+
 	createHT(hashtable,MAXSIZEHT);
 	loadDic(hashtable);
 	do
@@ -24,15 +26,15 @@ int main()
 		printf("\nBuscar mais? 1-SIM ou 2-NAO");
 		scanf("%d",&resp);
 	}while(resp==1);
-	
+
 	getchar();
 	printHT(hashtable,MAXSIZEHT);
-	return 0;	
+	return 0;
 
 }
 
 
-int loadDic(Node *hashtable[])
+int loadDic(Hash hashtable[])
 {
 	FILE *fp=fopen("palavras.txt","a+");
     if(fp==NULL)
@@ -41,7 +43,7 @@ int loadDic(Node *hashtable[])
 		  system("pause");
 		  return -1;
 		}
-	
+
 	int pos, x=0;
 	char aux[MAXSIZEW];
 	while(!feof(fp))

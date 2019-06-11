@@ -9,6 +9,13 @@ typedef struct tnode{
 
 }Node;
 
+//estrutura que vai ser util na hora de inserir e fazer busca binária
+typedef struct{
+	int size;
+	Node *first;
+}Hash;
+
+
 /* funcao: void createHT(Node *hashtable,int size)
    *  acao:        funcao que cria uma hashtable
    *  entrada:     vetor representando a hashtable

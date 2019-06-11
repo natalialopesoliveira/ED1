@@ -12,11 +12,14 @@
    *  saida:       void
    *  suposicoes:  nenhuma
 */
-void createHT(Node *hashtable[],int sizeht)
+//MODIFICAR
+void createHT(Hash hashtable[],int sizeht)
 {
 	int i;
-     for (i=0; i<sizeht; i++)
-	  	hashtable[i]= NULL;
+     for (i=0; i<sizeht; i++){
+	 	hashtable[i].first= NULL;
+	  	hashtable[i].size= 0;
+	}
 }
 
 /* funcao: Node *createNodeHT(char *inf)
@@ -48,7 +51,7 @@ Node *createNodeHT(char *inf)
 int functionHT(char *inf,int sizeht)
 {
 	int i,sum=0;
-	
+
 	for(i=0;i<strlen(inf);i++)	sum+=inf[i];
 	return fmod(sum,sizeht);;
 }
@@ -59,14 +62,14 @@ int functionHT(char *inf,int sizeht)
    *  saida:       void
    *  suposicoes:  nenhuma
 */
-void printHT(Node *hashtable[],int sizeht)
+void printHT(Hash hashtable[],int sizeht)
 {
 	int i;
 	for (i=0; i<sizeht; i++)
 	{
 		printf("\nIndice: %d ->", i);
 		getchar();
-		Node *ptr = hashtable[i];
+		Node *ptr = hashtable[i].first;
 		while (ptr != NULL)
 		{
 			printf("\t%s", ptr->info);
@@ -75,7 +78,7 @@ void printHT(Node *hashtable[],int sizeht)
 		printf("\n\n");
 		getchar();
 	}
-	
+
 }
 
 /* funcao: void insertHT(Node *hashtable[], char *name)
@@ -84,12 +87,18 @@ void printHT(Node *hashtable[],int sizeht)
    *  saida:       void
    *  suposicoes:  nenhuma
 */
-void insertHT(Node *hashtable[],int sizeht, char *word)
+void insertHT(Hash hashtable[],int sizeht, char *word)
 {
+	//insere no início
+	//ALTERAR:
+	//função que insere uma nova palavra na tabela hash. A
+	//palavra deve ser inserida na lista correspondente em
+	//ordem alfabética crescente sem usar busca binária. Só usar busca binária na função buscar palavra
 	Node *ptr = createNodeHT(word);
 	int pos = functionHT(word,sizeht);
-	ptr->next = hashtable[pos];
-	hashtable[pos]=ptr;
+	ptr->next = hashtable[pos].first;
+	hashtable[pos].first=ptr;
+	hashtable[pos].size++;
 }
 
 /* funcao: void deleteHT(Node *hashtable[], char *wd)
@@ -98,22 +107,24 @@ void insertHT(Node *hashtable[],int sizeht, char *word)
    *  saida:       void
    *  suposicoes:  nenhuma
 */
-void deleteHT(Node *hashtable[], int sizeht, char *wd)
+void deleteHT(Hash hashtable[], int sizeht, char *wd)
 {
 	int pos = functionHT(wd,sizeht);
 	Node *ptr;
-	if(hashtable[pos] != NULL)
+	if(hashtable[pos].first != NULL)
 	{
-		if(strcmp(hashtable[pos]->info,wd) == 0)
+		if(strcmp(hashtable[pos].first->info,wd) == 0)
 		{
-			ptr = hashtable[pos];
-			hashtable[pos]=hashtable[pos]->next;
+			ptr = hashtable[pos].first;
+			hashtable[pos].first=hashtable[pos].first->next;
+			free(ptr->info);
 			free(ptr);
+			hashtable[pos].size--;
 		}
 		else
 		{
-			ptr=hashtable[pos]->next;
-			Node *pptr=hashtable[pos];
+			ptr=hashtable[pos].first->next;
+			Node *pptr=hashtable[pos].first;
 			while(ptr!=NULL && strcmp(ptr->info,wd)!=0)
 			{
 				pptr=ptr;
@@ -122,7 +133,9 @@ void deleteHT(Node *hashtable[], int sizeht, char *wd)
 			if(ptr!=NULL)
 			{
 				pptr->next = ptr->next;
+				free(ptr->info);
 				free(ptr);
+				hashtable[pos].size--;
 			}
 		}
 	}
@@ -134,13 +147,14 @@ void deleteHT(Node *hashtable[], int sizeht, char *wd)
    *  saida:       void
    *  suposicoes:  nenhuma
 */
-void searchHT(Node *hashtable[], int sizeht, char *word)
+void searchHT(Hash hashtable[], int sizeht, char *word)
 {
+	//ele vai pedir para modificar retornando um node, além de fazer uma busca binária
 	clock_t Ticks[2];
-    
+
     int pos = functionHT(word,sizeht);
-	Node *ptr=hashtable[pos];
-	
+	Node *ptr=hashtable[pos].first;
+
 	Ticks[0] = clock();
 	while(ptr != NULL)
 	{
@@ -161,5 +175,5 @@ void searchHT(Node *hashtable[], int sizeht, char *word)
     double Tempo = (Ticks[1] - Ticks[0]) * 1000.0 / CLOCKS_PER_SEC;
     printf("\nNAO ENCONTREI!");
     printf("\nTempo gasto: %g ms.", Tempo);
-    
+
 }
