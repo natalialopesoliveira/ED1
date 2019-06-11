@@ -1,31 +1,31 @@
 #ifndef __MATRIZ_H__
 #define __MATRIZ_H__
 
+//para facilitar na hora de fazer os apontamentos
+#define dir(X)	X->direita
+#define aba(X) 	X->abaixo
+#define lin(X) 	X->linha
+#define col(X) 	X->coluna
+#define val(X)	X->valor
+
 typedef struct TCelula{
-    struct Tcelula *direita, *abaixo;
-    int linha, coluna;
-    double valor;
+	struct TCelula *direita, *abaixo;
+	int linha, coluna;
+	double valor;
 }Celula;
 
-typedef struct{
-    Celula *direita, *abaixo;
-    int linha, coluna;
-}Matriz;
+Celula *iniciaEsparsa(int linha, int coluna); //sim
 
-Celula *createCelula(int linha, int coluna, double valor);
+Celula *alocaCelula (int linha, int coluna, double valor); //sim
 
-void ImprimeMatriz( Celula *cabeca);
+void imprimeMatriz(Celula *matriz); //sim
 
-void LeMatriz (Matriz * A);
+void apagaMatriz(Celula **matriz); //sim
 
-void ApagaMatriz(Matriz * A);
+Celula *LeMatriz(); //sim
 
-void SomaMatriz (Matriz *A, Matriz *B, Matriz *C);
+void somaMatriz(Celula *matrizA,Celula *matrizB,Celula **matrizC); //nao
 
-void MultiplicaMatriz (Matriz *A, Matriz *B, Matriz *C);
+void multiplicaMatriz (Celula *matrizA, Celula *matrizB, Celula **matrizC); //nao mesmo
 
-
-
-
-
-#endif __MATRIZ_H__
+#endif // __MATRIZ_H__

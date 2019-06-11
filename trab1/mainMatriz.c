@@ -1,14 +1,13 @@
-#include <stdio.h>
-#include <stdbool.h>
 #include "matriz.c"
 
+// cd ~/Documents/ED1/trab1 && gcc mainMatriz.c -o mainMatriz && ./mainMatriz
 int main(){
-    Celula *cabeca;
-    int linhasMatriz, colunasMatriz;
-    cabeca = createCelula(-1,-1,NULL);
+    Celula *matriz,*mat;
 
-    scanf("%d %d",&linhasMatriz,&colunasMatriz);
-    
+	matriz = LeMatriz();
 
-    return 0;
+
+	imprimeMatriz(matriz);
+	apagaMatriz(&matriz);
+	return 0;
 }

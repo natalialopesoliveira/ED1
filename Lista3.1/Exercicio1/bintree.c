@@ -58,8 +58,17 @@ void destroyBT(bintree *bt){
 }
 //8)
 int heightBT(bintree *bt){
-    
+    if (!bt) return 0;
+    int r,l;
+    l = 1 + heightBT(leftBT(bt));
+    r = 1 + heightBT(rightBT(bt));
+    if(r > l) return r;
+    return l;
 }
+//9)
+List *preOrderTraversalBT(bintree *bt)
+
+
 //outros
 
 Info *createInfo(int info){
