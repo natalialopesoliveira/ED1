@@ -18,7 +18,7 @@ AVL *createAVL(void)
 }
 
 /* funcao: Node *createNode()
-   *  acao:        funcao que cria um novo no o qual devera 
+   *  acao:        funcao que cria um novo no o qual devera
    					ser inserido na arvore
    *  entrada:     elemento de informacao do novo no
    *  saida:       ponteiro para um no
@@ -54,10 +54,10 @@ Info *createInfo(int i)
 }
 
 /* funcao: AVL * leftAVL(AVL *avl)
-   *  acao:        retorna a subárvore esquerda de uma árvore avl
-   *  entrada:     ponteiro para a árvore avl (avl)
-   *  saida:       ponteiro para a subárvore esquerda de avl
-   *  suposicoes:  árvore avl
+   *  acao:        retorna a subï¿½rvore esquerda de uma ï¿½rvore avl
+   *  entrada:     ponteiro para a ï¿½rvore avl (avl)
+   *  saida:       ponteiro para a subï¿½rvore esquerda de avl
+   *  suposicoes:  ï¿½rvore avl
 */
 AVL *leftAVL(AVL *avl)
 {
@@ -66,10 +66,10 @@ AVL *leftAVL(AVL *avl)
 }
 
 /* funcao: AVL * rightAVL(AVL *avl)
-   *  acao:        retorna a subárvore direita de uma árvore avl
-   *  entrada:     ponteiro para a árvore avl (avl)
-   *  saida:       ponteiro para a subárvore direita de avl
-   *  suposicoes:  árvore avl
+   *  acao:        retorna a subï¿½rvore direita de uma ï¿½rvore avl
+   *  entrada:     ponteiro para a ï¿½rvore avl (avl)
+   *  saida:       ponteiro para a subï¿½rvore direita de avl
+   *  suposicoes:  ï¿½rvore avl
 */
 
 AVL *rightAVL(AVL *avl)
@@ -79,10 +79,10 @@ AVL *rightAVL(AVL *avl)
 }
 
 /* funcao: Info * rootAVL(AVL *avl)
-   *  acao:        retorna o elemento de informacao da raiz de uma árvore avl
-   *  entrada:     ponteiro para a árvore avl (avl)
-   *  saida:       ponteiro para o elemento de informacao da raiz da árvore avl
-   *  suposicoes:  árvore avl
+   *  acao:        retorna o elemento de informacao da raiz de uma ï¿½rvore avl
+   *  entrada:     ponteiro para a ï¿½rvore avl (avl)
+   *  saida:       ponteiro para o elemento de informacao da raiz da ï¿½rvore avl
+   *  suposicoes:  ï¿½rvore avl
 */
 Info *rootAVL(AVL *avl)
 {
@@ -91,11 +91,11 @@ Info *rootAVL(AVL *avl)
 }
 
 /* funcao: int isEmptyAVL(AVL *avl)
-   *  acao:        verifica se uma árvore avl esta vazia ou nula
-   *  entrada:     ponteiro para a árvore avl (avl)
-   *  saida:       1, se a arvore avl é vazia ou nula
-				   0, caso contrario
-   *  suposicoes:  árvore avl
+    *  acao:        verifica se uma ï¿½rvore avl esta vazia ou nula
+    *  entrada:     ponteiro para a ï¿½rvore avl (avl)
+    *  saida:       1, se a arvore avl ï¿½ vazia ou nula
+				    0, caso contrario
+    *  suposicoes:  ï¿½rvore avl
 */
 int isEmptyAVL(AVL *avl)
 {
@@ -105,12 +105,12 @@ int isEmptyAVL(AVL *avl)
 
 /* funcao: AVL searchAVL(AVL *avl,Info *inf)
    *  acao:        busca por um elemento de informacao na arvore avl
-   *  entrada:     ponteiro para a árvore avl (avl) e um ponteiro
-   					para o elemento de informação (inf)
+   *  entrada:     ponteiro para a ï¿½rvore avl (avl) e um ponteiro
+   					para o elemento de informaï¿½ï¿½o (inf)
    *  saida:       pontiro para o no da arvore que contem o elemento
    					 de informacao buscado
 				   NULL, caso contrario
-   *  suposicoes:  árvore avl
+   *  suposicoes:  ï¿½rvore avl
 */
 AVL *searchAVL(AVL *avl,Info *inf)
 {
@@ -123,9 +123,9 @@ AVL *searchAVL(AVL *avl,Info *inf)
 
 /* funcao: int heightAVL(AVL *avl)
    *  acao:        calcula a altura de uma arvore avl
-   *  entrada:     ponteiro para a árvore avl (avl)
+   *  entrada:     ponteiro para a ï¿½rvore avl (avl)
    *  saida:       inteiro representando a altura da arvore
-   *  suposicoes:  árvore avl
+   *  suposicoes:  ï¿½rvore avl
 */
 int heightAVL(AVL *avl)
 {
@@ -137,14 +137,14 @@ int heightAVL(AVL *avl)
     else return l;
 }
 
-  
+
 //***********************************
-/* funcao: int isAVL(AVL *avl) 
+/* funcao: int isAVL(AVL *avl)
    *  acao:        verifica se eh arvore avl
-   *  entrada:     endereço de um ponteiro para a árvore avl (avl)
+   *  entrada:     endereï¿½o de um ponteiro para a ï¿½rvore avl (avl)
    *  saida:		1, se a diferenca de altura entre as subarvores esquerda e direita eh <=1
    					0, caso contrario
-   *  suposicoes:  árvore avl
+   *  suposicoes:  ï¿½rvore avl
 */
 int isAVL(AVL *avl) {
   if (avl == NULL) return 1;
@@ -153,11 +153,11 @@ int isAVL(AVL *avl) {
 
 /* funcao: int insertAVL(AVL **avl,Info *inf)
    *  acao:        insere um elemento de informacao na arvore avl
-   *  entrada:     endereço de um ponteiro para a árvore avl (avl)
-   			 e um ponteiro para o elemento de informação a ser inserido (inf)
-   *  saida:		1, caso a inserção ocorra com sucesso
+   *  entrada:     endereï¿½o de um ponteiro para a ï¿½rvore avl (avl)
+   			 e um ponteiro para o elemento de informaï¿½ï¿½o a ser inserido (inf)
+   *  saida:		1, caso a inserï¿½ï¿½o ocorra com sucesso
    					0, caso contrario
-   *  suposicoes:  árvore avl
+   *  suposicoes:  ï¿½rvore avl
 */
 int insertAVL(AVL **avl,Info *inf)
 {
@@ -168,16 +168,16 @@ int insertAVL(AVL **avl,Info *inf)
 //growup indica que apos a insercao a avl cresceu
 int auxInsertAVL(AVL** avl, Info *inf, int *growup)
 {
-	if (*avl==NULL) 
+	if (*avl==NULL)
 	{
 		printf("\nauxInsertAVL:1");
     	*avl=createNodeAVL(inf);
     	*growup=1;
 		return 1;
 	}
-	//se o nó já existe, o mesmo não será inserido
+	//se o nï¿½ jï¿½ existe, o mesmo nï¿½o serï¿½ inserido
     if (inf->value==(*avl)->info->value) return 0;
-	
+
 	// insercao na sub-arvore esquerda
 	if (inf->value<(*avl)->info->value)
 	{
@@ -209,7 +209,7 @@ int auxInsertAVL(AVL** avl, Info *inf, int *growup)
 		}
 		else return 0;
 	}
-	
+
 	// insercao na sub-arvore direita
   	if(inf->value>(*avl)->info->value)
 	{
@@ -274,7 +274,7 @@ void LR_RotationAVL(AVL** avl)
 	AVL *c = *avl;
 	AVL *a = c->left;
 	AVL *b = a->right;
-	
+
 	c->left = b->right;
 	a->right = b->left;
 	b->left = a;
@@ -304,7 +304,7 @@ void RL_RotationAVL(AVL** avl)
 	AVL *a = *avl;
 	AVL *c = a->right;
 	AVL *b = c->left;
-	
+
 	c->left = b->right;
 	a->right = b->left;
 	b->left = a;
@@ -325,70 +325,94 @@ void RL_RotationAVL(AVL** avl)
 		break;
 	}
 	b->balance = 0;
-	*avl = b;  
+	*avl = b;
 }
 
 
 /*******************************IMPLEMENTAR***************************************/
 /* funcao: AVL * deleteAVL(AVL *avl,Info *inf)
-   *  acao:        eliminar um elemento de informação da arvore, e mantem a arvore avl
-   *  entrada:     ponteiro para a árvore binaria avl e ponteiro para o elemento de informação a ser deletado inf
+   *  acao:        eliminar um elemento de informaï¿½ï¿½o da arvore, e mantem a arvore avl
+   *  entrada:     ponteiro para a ï¿½rvore binaria avl e ponteiro para o elemento de informaï¿½ï¿½o a ser deletado inf
    *  saida:       ponteiro para a arvore com o elemento de informcao deletado
-   *  suposicoes:  árvore avl
+   *  suposicoes:  ï¿½rvore avl
 */
 AVL *deleteAVL(AVL *avl,Info *inf)
 {
-	
-    return avl;
+    if(!avl) return NULL;
+    if(!inf) return avl;
+    int decresceu=0;
+    return auxDeleteAVL(avl,inf,&decresceu);
 }
-    
-/*********************************************************************************************/    
+
+AVL *auxDeleteAVL(AVL *alv, Info *inf, int *decresceu){
+    if(!avl) return NULL;
+    if (inf->value < avl->info->value){
+        avl->right = auxDeleteAVL(rightAVL(avl), inf, decresceu);
+    } else if (inf->value > avl->info->value) {
+        avl->left = auxDeleteAVL(leftAVL(avl), inf, decresceu);
+    } else {
+        if(!avl->right){
+            AVL *temp = leftAVL(avl);
+            free(avl->info);
+            free(avl);
+            *decresceu = 1;
+            return temp;
+        } else if(!avl->left){
+            AVL *temp = rightAVL(avl);
+            free(avl->info);
+            free(avl);
+            *decresceu = 1;
+            return temp;
+        }
+
+    }
+}
+
+/*********************************************************************************************/
 
 /* funcao: void printAVL(AVL *avl)
-   *  acao:        imprime os elementos de informação considerando o caminho em profundidade da arvore
-   *  entrada:     ponteiro para a árvore binaria avl
+   *  acao:        imprime os elementos de informaï¿½ï¿½o considerando o caminho em profundidade da arvore
+   *  entrada:     ponteiro para a ï¿½rvore binaria avl
    *  saida:       void
-   *  suposicoes:  árvore avl
+   *  suposicoes:  ï¿½rvore avl
 */
-void printAVL(AVL *avl) 
+void printAVL(AVL *avl)
 {
-	
+
 	if(isEmptyAVL(avl))return;
 	auxprintAVL(leftAVL(avl));
     printf(" %d", (rootAVL(avl))->value);
     auxprintAVL(rightAVL(avl));
-   
+
 }
 
 /* funcao: void auxprintAVL(AVL *avl)
-   *  acao:        imprime os elementos de informação considerando o caminho em profundidade da arvore
-   *  entrada:     ponteiro para a árvore binaria avl
+   *  acao:        imprime os elementos de informaï¿½ï¿½o considerando o caminho em profundidade da arvore
+   *  entrada:     ponteiro para a ï¿½rvore binaria avl
    *  saida:       void
-   *  suposicoes:  árvore avl
+   *  suposicoes:  ï¿½rvore avl
 */
 void auxprintAVL(AVL *avl)
 {
 	if(isEmptyAVL(avl))return;
-	
+
     auxprintAVL(leftAVL(avl));
     printf(" %d", (rootAVL(avl))->value);
     auxprintAVL(rightAVL(avl));
 }
 
 /* funcao: void printPreOrderAVL(AVL *avl)
-   *  acao:        imprime os elementos de informação considerando o caminho em PreOrdem da arvore
-   *  entrada:     ponteiro para a árvore binaria avl
+   *  acao:        imprime os elementos de informaï¿½ï¿½o considerando o caminho em PreOrdem da arvore
+   *  entrada:     ponteiro para a ï¿½rvore binaria avl
    *  saida:       void
-   *  suposicoes:  árvore avl
+   *  suposicoes:  ï¿½rvore avl
 */
-void printPreOrderAVL(AVL *avl) 
+void printPreOrderAVL(AVL *avl)
 {
-	
+
 	if(isEmptyAVL(avl))return;
 	printf(" %d", (rootAVL(avl))->value);
 	printPreOrderAVL(leftAVL(avl));
     printPreOrderAVL(rightAVL(avl));
-   
+
 }
-
-
