@@ -22,7 +22,7 @@ typedef struct{
    *  saida:       void
    *  suposicoes:  nenhuma
 */
-void createHT(Node *hashtable[],int sizeht);
+void createHT(Hash hashtable[],int sizeht);
 
 /* funcao: Node *createNodeHT(char *inf)
    *  acao:        funcao que cria um novo no e aloca
@@ -48,7 +48,7 @@ int functionHT(char *inf,int sizeht);
    *  saida:       void
    *  suposicoes:  nenhuma
 */
-void printHT(Node *hashtable[],int sizeht);
+void printHT(Hash hashtable[],int sizeht);
 
 /* funcao: void insertHT(Node *hashtable[], char *name)
    *  acao:        funcao que insere uma chave na tabela hash
@@ -56,7 +56,7 @@ void printHT(Node *hashtable[],int sizeht);
    *  saida:       void
    *  suposicoes:  nenhuma
 */
-void insertHT(Node *hashtable[],int sizeht, char *name);
+void insertHT(Hash hashtable[],int sizeht, char *name);
 
 /* funcao: void deleteHT(Node *hashtable[], char *wd)
    *  acao:        funcao que deleta uma chave da tabela hash
@@ -64,7 +64,7 @@ void insertHT(Node *hashtable[],int sizeht, char *name);
    *  saida:       void
    *  suposicoes:  nenhuma
 */
-void deleteHT(Node *hashtable[], int sizeht, char *wd);
+void deleteHT(Hash hashtable[], int sizeht, char *wd);
 
 /* funcao: void searchHT(Node *hashtable[], char *wd)
    *  acao:        funcao que busca uma chave na tabela hash
@@ -72,7 +72,7 @@ void deleteHT(Node *hashtable[], int sizeht, char *wd);
    *  saida:       void
    *  suposicoes:  nenhuma
 */
-void searchHT(Node *hashtable[], int sizeht, char *wd);
+Node *searchHT(Hash hashtable[], int sizeht, char *wd);
 
 
 
