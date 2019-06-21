@@ -15,6 +15,7 @@ void insere(int i, int j, double v, Celula *A); //sim
 
 void ApagaMatriz(Celula *A); //sim
 void SomaMatriz(Celula *A, Celula *B, Celula **C);
+void auxSomaMatriz(Celula *A, Celula *B, Celula *C);
 void MultiplicaMatriz(Celula *A, Celula *B, Celula **C);
 
 

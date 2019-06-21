@@ -86,6 +86,8 @@ Celula *LeMatriz(){
 	if(file != NULL){
 		fscanf(file," %d",&linha);
 		fscanf(file,",%d",&coluna);
+		printf("Linha %d",linha);
+		printf("Coluna %d",coluna);
 	} else{
 		printf("ai\n");
 	}

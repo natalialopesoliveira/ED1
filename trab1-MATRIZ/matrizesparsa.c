@@ -56,6 +56,29 @@ void ImprimeMatriz(Celula *A){
 
 }
 
+void LeMatriz(Celula *A){
+    FILE *file;
+    char  arquivo[50];
+    int linha, coluna;
+    double valor;
+    file = fopen("./teste.txt","r");
+    if(file != NULL){
+        fscanf(file,"%d",&linha);
+		fscanf(file,",%d",&coluna);
+	} else{
+		printf("Não foi possível abrir o arquivo.\n");
+	}
+    //para reservar o valor do número de linhas e colunas originais da matriz, já que como as ultimas colunas podem apenas conter zeros(assim como as ultimas linhas), não é possível obter o valor depois
+    A->linha = linha;
+    A->coluna = coluna;
+
+    //salvando elemento por elemento
+    while(fscanf(file,"%d %d %lf",&linha,&coluna,&valor) == 3){
+        insere(linha, coluna, valor, A);
+    }
+
+}
+
 void insere(int i, int j, double v, Celula *A){
     if(!A) return;
     Celula *anterior = NULL, *atual, *ptr;
@@ -63,10 +86,17 @@ void insere(int i, int j, double v, Celula *A){
     if(!ptr) return;
     //PARA LINHA
     for(atual = A->abaixo; atual, atual->linha<i; anterior = atual, atual = atual->abaixo);
-
+    
     //achou a linha
     if(atual->linha == i){
         for(atual = A->direita; atual, atual->coluna<j; anterior = atual, atual = atual->direita);
+
+        //verifica se a celula já existe
+        if(atual->coluna == j){
+            printf("A célula já existe, não foi possível inserir");
+            return;
+        }
+
         //a célula a ser adicionada será a última da linha e depois da anterior
         if(!atual){
             anterior->direita = ptr;
@@ -128,31 +158,31 @@ void ApagaMatriz(Celula *A){
     free(A);
 }
 
-void SomaMatriz(Celula *A, Celula *B, Celula **C){
-    if(!A || !B || !A->direita || !B->direita) return NULL;
-    Celula *aux;
-    //calcular o número de linhas e de colunas da matriz A
-    int linhasA, colunasA;
-    for(aux=A->direita; aux->direita; aux = aux->direita);
-    colunasA = aux->coluna;
-    for(aux=A->abaixo; aux->abaixo; aux = aux->abaixo);
-    linhasA = aux->linha;
-
-    //calcular o número de linhas e de colunas da matriz B
-    int linhasB, colunasB;
-    for(aux=B->direita; aux->direita; aux = aux->direita);
-    colunasB = aux->coluna;
-    for(aux=B->abaixo; aux->abaixo; aux = aux->abaixo);
-    linhasB = aux->linha;
-    //verificar se é possível fazer a soma das matrizes
-    if(linhasA != linhasB && colunasA != colunasB) return NULL;
-    
-    auxSomaMatriz(A->direita, B, C);
-    auxSomaMatriz(A, B->direita, C);
-
-}
-
-void auxSomaMatriz(Celula *A, Celula *B, Celula *C){
-    if(!A || !B) return;
-
-}
+// void SomaMatriz(Celula *A, Celula *B, Celula **C){
+//     if(!A || !B || !A->direita || !B->direita) return;
+//     Celula *aux;
+//     //calcular o número de linhas e de colunas da matriz A
+//     int linhasA, colunasA;
+//     for(aux=A->direita; aux->direita; aux = aux->direita);
+//     colunasA = aux->coluna;
+//     for(aux=A->abaixo; aux->abaixo; aux = aux->abaixo);
+//     linhasA = aux->linha;
+//
+//     //calcular o número de linhas e de colunas da matriz B
+//     int linhasB, colunasB;
+//     for(aux=B->direita; aux->direita; aux = aux->direita);
+//     colunasB = aux->coluna;
+//     for(aux=B->abaixo; aux->abaixo; aux = aux->abaixo);
+//     linhasB = aux->linha;
+//     //verificar se é possível fazer a soma das matrizes
+//     if(linhasA != linhasB && colunasA != colunasB) return;
+//
+//     auxSomaMatriz(A->direita, B, C);
+//     auxSomaMatriz(A, B->direita, C);
+//
+// }
+//
+// void auxSomaMatriz(Celula *A, Celula *B, Celula *C){
+//     if(!A || !B) return;
+//
+// }
