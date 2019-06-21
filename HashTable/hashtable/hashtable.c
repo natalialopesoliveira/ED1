@@ -68,7 +68,7 @@ void printHT(Hash hashtable[],int sizeht)
 	for (i=0; i<sizeht; i++)
 	{
 		printf("\nIndice: %d ->", i);
-		getchar();
+		// getchar();
 		Node *ptr = hashtable[i].first;
 		while (ptr != NULL)
 		{
@@ -76,7 +76,7 @@ void printHT(Hash hashtable[],int sizeht)
 			ptr = ptr->next;
 		}
 		printf("\n\n");
-		getchar();
+		// getchar();
 	}
 
 }
@@ -124,19 +124,15 @@ void deleteHT(Hash hashtable[], int sizeht, char *wd)
 	int pos = functionHT(wd,sizeht);
 	Node *ptr, *aux;
 	ptr = searchHT(hashtable, sizeht, wd);
-	printf("1");
 	if(!ptr) return;
-	printf("2");
 	if(hashtable[pos].first == ptr){
-		printf("3");
 		hashtable[pos].first = ptr->next;
 	} else{
 		for(aux = hashtable[pos].first; aux->next != ptr; aux = aux->next);
-		printf("4");
 		aux->next = ptr->next;
 	}
-	printf("5");
 	free(ptr);
+	hashtable[pos].size--;
 
 	// if(hashtable[pos].first != NULL)
 	// {
@@ -177,27 +173,41 @@ void deleteHT(Hash hashtable[], int sizeht, char *wd)
 Node *searchHT(Hash hashtable[], int sizeht, char *word)
 {
 	//ele vai pedir para modificar retornando um node, além de fazer uma busca binária
-	// clock_t Ticks[2];
+	clock_t Ticks[2];
+	Ticks[0] = clock();
 	int pos = functionHT(word,sizeht), maior, menor = 1, atual, i;
-	if(hashtable[pos].size == 0) return NULL;
+	if(hashtable[pos].size == 0){
+		Ticks[1] = clock();
+		double Tempo = (Ticks[1] - Ticks[0]) * 1000.0 / CLOCKS_PER_SEC;
+		printf("\nNAO ENCONTREI!");
+		printf("\nTempo gasto: %g ms.", Tempo);
+		return NULL;
+	}
 	maior = hashtable[pos].size;
 	atual = (maior + menor)/2;
-	Node *ptr, *first = hashtable[pos].first, *last;
-	for(last = first, i=0; i<(maior-1); i++, last = last->next);
-	while(first != last){
-		for(ptr = first, i=0; i<(atual-1); i++, ptr = ptr->next);
+	Node *ptr;
+	while(menor <= maior){
+		for(ptr = hashtable[pos].first, i=0; i<(atual-1); i++, ptr = ptr->next);
 		if(strcmp(ptr->info,word)==0){
+			printf("\nENCONTREI! Indice: %d ->", pos);
+			getchar();
+			printf("\t%s", ptr->info);
+			Ticks[1] = clock();
+			double Tempo = (Ticks[1] - Ticks[0]) * 1000.0 / CLOCKS_PER_SEC;
+			printf("\nTempo gasto: %g ms.", Tempo);
 			return ptr;
 		} else if (strcmp(ptr->info,word)>0){
-			maior = atual;
+			maior = atual-1;
 			atual = (maior + menor)/2;
-			last = ptr;
 		}else {
-			menor = atual;
+			menor = atual+1;
 			atual = (maior + menor)/2;
-			first = ptr;
 		}
 	}
+	Ticks[1] = clock();
+	double Tempo = (Ticks[1] - Ticks[0]) * 1000.0 / CLOCKS_PER_SEC;
+	printf("\nNAO ENCONTREI!");
+	printf("\nTempo gasto: %g ms.", Tempo);
 	return NULL;
 
 
