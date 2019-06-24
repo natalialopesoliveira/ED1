@@ -7,7 +7,7 @@ int main(){
 	matriz = LeMatriz();
 
 
-	imprimeMatriz(matriz);
-	apagaMatriz(&matriz);
+	// imprimeMatriz(matriz);
+	// apagaMatriz(&matriz);
 	return 0;
 }

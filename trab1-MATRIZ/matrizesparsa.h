@@ -7,11 +7,11 @@ typedef struct Tcelula{
 	double valor;
 }Celula;
 
-Celula *criaCelula(int linha, int coluna, double valor); //sim
-void ImprimeMatriz(Celula *A); //sim
+Celula *criaCelula(int linha, int coluna, double valor);
+void ImprimeMatriz(Celula *A);
 void LeMatriz(Celula *A);
 
-void insere(int i, int j, double v, Celula *A); //sim
+void insere(int i, int j, double v, Celula *A);
 
 void ApagaMatriz(Celula *A); //sim
 void SomaMatriz(Celula *A, Celula *B, Celula **C);

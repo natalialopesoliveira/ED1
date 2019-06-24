@@ -21,16 +21,13 @@ void ImprimeMatriz(Celula *A){
 
     //calcular o número de linhas e de colunas da matriz
     int linhas, colunas, i, j;
-    for(aux=A->direita; aux->direita; aux = aux->direita);
-    colunas = aux->coluna;
-    for(aux=A->abaixo; aux->abaixo; aux = aux->abaixo);
-    linhas = aux->linha;
-
+    linhas = A->linha;
+    colunas = A->coluna;
     //navegar pelas linhas para conseguir imprimir a matriz
     aux = A->abaixo;
     for(i=1; i<=linhas; i++){
         //linha nao existe
-        if(aux->linha != i){
+        if(aux && aux->linha != i){
             printf("\n");
             for(j=1; j<=colunas; j++){
                 printf("0\t");
@@ -42,8 +39,8 @@ void ImprimeMatriz(Celula *A){
             printf("\n");
             for(j=1; j<=colunas; j++){
                 //se existe elemento naquela coluna
-                if(aux1->coluna == j){
-                    printf("%lf\t", aux1->valor);
+                if(aux1 && aux1->coluna == j){
+                    printf("%.2lf\t", aux1->valor);
                     aux1 = aux1->direita;
                 }
                 //se nao
@@ -58,7 +55,6 @@ void ImprimeMatriz(Celula *A){
 
 void LeMatriz(Celula *A){
     FILE *file;
-    char  arquivo[50];
     int linha, coluna;
     double valor;
     file = fopen("./teste.txt","r");
@@ -85,18 +81,16 @@ void insere(int i, int j, double v, Celula *A){
     ptr = criaCelula(i, j, v);
     if(!ptr) return;
     //PARA LINHA
-    for(atual = A->abaixo; atual, atual->linha<i; anterior = atual, atual = atual->abaixo);
-    
+
+    for(atual = A->abaixo; atual && atual->linha<i; anterior = atual, atual = atual->abaixo);
+    // if(atual) printf("\n\n\natual: %d \n\n\n",atual->linha);
+
+
     //achou a linha
-    if(atual->linha == i){
-        for(atual = A->direita; atual, atual->coluna<j; anterior = atual, atual = atual->direita);
+    if(atual && atual->linha == i){
 
-        //verifica se a celula já existe
-        if(atual->coluna == j){
-            printf("A célula já existe, não foi possível inserir");
-            return;
-        }
-
+        //procura a coluna
+        for(atual = A->direita; atual && atual->coluna<j; anterior = atual, atual = atual->direita);
         //a célula a ser adicionada será a última da linha e depois da anterior
         if(!atual){
             anterior->direita = ptr;
@@ -106,8 +100,8 @@ void insere(int i, int j, double v, Celula *A){
             anterior->direita = ptr;
             ptr->direita = atual;
         }
-
     }
+
     //se não existir a linha
     else{
         Celula *linha = criaCelula(i, -1, 0);
@@ -123,10 +117,10 @@ void insere(int i, int j, double v, Celula *A){
 
 
     //PARA COLUNA
-    for(atual = A->direita; atual, atual->coluna<j; anterior = atual, atual = atual->direita);
+    for(atual = A->direita; atual && atual->coluna<j; anterior = atual, atual = atual->direita);
     //achou a coluna
-    if(atual->coluna == j){
-        for(atual = A->abaixo; atual, atual->linha<i; anterior = atual, atual = atual->abaixo);
+    if(atual && atual->coluna == j){
+        for(atual = A->abaixo; atual && atual->linha<i; anterior = atual, atual = atual->abaixo);
         //a célula a ser adicionada será a última da coluna e depois da anterior
         if(!atual){
             anterior->abaixo = ptr;
