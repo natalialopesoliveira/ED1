@@ -14,7 +14,12 @@ typedef struct bt{
 typedef struct tnode{
     Info *info;
     struct tnode *next;
-}
+}Node;
+
+typedef struct{
+    int size;
+    Node *first;
+}List;
 
 //1)
 bintree *createBT(Info *info);
@@ -33,8 +38,16 @@ void destroyBT(bintree *bt);
 //8)
 int heightBT(bintree *bt);
 //9)
-List *preOrderTraversalBT(bintree *bt)
-
+List *preOrderTraversalBT(bintree *bt);
+void auxPreOrderTraversalBT(bintree *bt, List *list)
+//10)
+List *inOrderTraversalBT(bintree *bt);
+void auxInOrderTraversalBT(bintree *bt, List *list)
+//11)
+List *postOrderTraversalBT(bintree *bt);
+void auxPostOrderTraversalBT(bintree *bt, List *list);
+//12)
+List *levelOrderTraversalBT(bintree *bt);
 
 Info *createInfo(int info);
 void insertLeftBT(bintree *bt, Info *info);

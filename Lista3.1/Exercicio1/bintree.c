@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "bintree.h"
+#include "list.c"
 
 //1)
 bintree *createBT(Info *info){
@@ -30,7 +31,7 @@ bintree *rightBT(bintree *bt){
 
 //4)
 //dúvida, como posso ter certeza de que estou passando a raiz?
-Info * rootBT(bintree *bt){
+Info *rootBT(bintree *bt){
     if(!bt) return NULL;
     return bt->info;
 }
@@ -66,9 +67,103 @@ int heightBT(bintree *bt){
     return l;
 }
 //9)
-List *preOrderTraversalBT(bintree *bt)
+List *preOrderTraversalBT(bintree *bt){
+    List *list;
+    Node *ptr;
+    Info *info;
+    if(!bt) return NULL;
+    list = createList();
+    if(!list) return NULL;
+    info = createInfo(rootBT(bt)->info);
+    if(!info) {
+        free(list);
+        return NULL;
+    }
+    insertLast(list,info);
+    auxPreOrderTraversalBT(leftBT(bt), list);
+    auxPreOrderTraversalBT(rightBT(bt), list);
+    return list;
+}
 
+void auxPreOrderTraversalBT(bintree *bt, List *list){
+    if(!bt || !list) return;
+    Info *info;
+    info = createInfo(rootBT(bt)->info);
+    if(!info) return NULL;
+    insertLast(list,info);
+    auxPreOrderTraversalBT(leftBT(bt), list);
+    auxPreOrderTraversalBT(rightBT(bt), list);
+}
+//10)
+List *inOrderTraversalBT(bintree *bt){
+    if(!bt) return NULL;
+    List *list;
+    Info *info;
+    list = createList();
+    if(!list) return NULL;
+    info = createInfo(rootBT(bt)->info);
+    if(!info) {
+        free(list);
+        return NULL;
+    }
+    auxInOrderTraversalBT(leftBT(bt), list);
+    insertLast(list, info);
+    auxInOrderTraversalBT(rightBT(bt), list);
+    return list;
+}
 
+void auxInOrderTraversalBT(bintree *bt, List *list){
+    if(!bt || !list) return NULL;
+    Info *info;
+    info = createInfo(rootBT(bt)->info);
+    if(!info) return NULL;
+    auxInOrderTraversalBT(leftBT(bt), list);
+    insertLast(list, info);
+    auxInOrderTraversalBT(rightBT(bt), list);
+}
+
+//11)
+List *postOrderTraversalBT(bintree *bt){
+    if(!bt) return NULL;
+    List *list;
+    list = createList();
+    if(!list) return NULL;
+    Info *info;
+    info = createInfo(rootBT(bt));
+    if(!info)
+    {
+        free(list);
+        return NULL;
+    }
+    auxPostOrderTraversalBT(leftBT(bt), list);
+    auxPostOrderTraversalBT(rightBT(bt), list);
+    insertLast(list, info);
+    return list;
+}
+
+void auxPostOrderTraversalBT(bintree *bt, List *list){
+    if(!bt || !list) return NULL;
+    Info *info;
+    info = createInfo(rootBT(bt));
+    if(!info) return NULL;
+    auxPostOrderTraversalBT(leftBT(bt), list);
+    auxPostOrderTraversalBT(rightBT(bt), list);
+    insertLast(list, info);
+}
+
+//12)
+List *levelOrderTraversalBT(bintree *bt){
+    if(!bt) return NULL;
+    List *list;
+    list = createList();
+    if(!list) return NULL;
+    Info *info = createInfo(rootBT(bt));
+    if(!info){
+        free(list);
+        return NULL;
+    }
+    
+}
 //outros
 
 Info *createInfo(int info){

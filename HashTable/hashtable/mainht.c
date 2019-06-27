@@ -4,8 +4,11 @@
 
 // #define MAXSIZEHT 3
 #define MAXSIZEHT 11
-#define MAXSIZEW 23
+#define MAXSIZEW 50
 
+//cd ~/Documents/ED1/HashTable/hashtable && gcc mainht.c -o main && ./main
+
+int loadDic(Hash hashtable[]);
 int main()
 {
 	//mudar para.. MODIFICAR TUDO
@@ -45,7 +48,7 @@ int main()
 
 int loadDic(Hash hashtable[])
 {
-	FILE *fp=fopen("palavras.txt","a+");
+	FILE *fp=fopen("./palavras.txt","r");
     if(fp==NULL)
 	    {
 		  printf("\a\a\n\n\n\n\n\nERRO AO ABRIR O ARQUIVO!\n\n\n\n\n\n");
@@ -55,10 +58,13 @@ int loadDic(Hash hashtable[])
 
 	int pos, x=0;
 	char aux[MAXSIZEW];
+	char c;
 	while(!feof(fp))
 	{
-			fgets(aux,MAXSIZEW,fp);
-			strtok(aux, "\n");
+			// fgets(aux,MAXSIZEW,fp);
+			fscanf(fp, "%s\n",aux);
+
+			// printf("\nPalavra=%s*\n",aux);
 			pos = functionHT(aux,MAXSIZEHT);
 			printf("\nloadDic: Palavra=%s Posicao=%d",aux,pos);
 			insertHT(hashtable,MAXSIZEHT,aux);

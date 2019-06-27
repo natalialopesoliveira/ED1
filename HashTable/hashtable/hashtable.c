@@ -97,19 +97,13 @@ void insertHT(Hash hashtable[],int sizeht, char *word)
 	Node *ptr = createNodeHT(word), *current, *prev = NULL;
 	int pos = functionHT(word,sizeht);
 	for(current = hashtable[pos].first; current && (strcmp(current->info,word)<0); prev = current, current = current->next);
-	if(!prev && current){
+	if(!prev){
 		ptr->next = current;
 		hashtable[pos].first=ptr;
-	} else if(prev && !current){
-		prev->next = ptr;
-	} else if(prev && current){
-		ptr->next = current;
-		prev->next = ptr;
 	} else{
-		hashtable[pos].first=ptr;
+		ptr->next = current;
+		prev->next = ptr;
 	}
-	// ptr->next = hashtable[pos].first;
-	// hashtable[pos].first=ptr;
 	hashtable[pos].size++;
 }
 
