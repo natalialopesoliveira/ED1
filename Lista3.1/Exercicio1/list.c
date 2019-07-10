@@ -62,7 +62,14 @@ void insertLast(List *list, Info *info){
 
 Info *removeFirst(List *list){
     if(!list) return NULL;
-    if(list->first == NULL)
+    if(list->first == NULL) return NULL;
+    Node *ptr;
+    Info *info;
+    ptr = list->first;
+    list->first = ptr->next;
+    info = ptr->info;
+    free(ptr);
+    return info;
 }
 
 void posList(List *list, int pos){
@@ -122,4 +129,17 @@ void printList(List *list){
         printf("%c ", aux->info->info);
     }
     printf("] FIM\n");
+}
+
+void deleteList(List *list){
+    if(!list) return;
+    auxDeleteList(Node *ptr);
+    free(list);
+}
+
+void auxDeleteList(Node *ptr){
+    if(!ptr) return;
+    auxDeleteList(ptr->next);
+    free(ptr->info);
+    free(ptr);
 }

@@ -21,6 +21,8 @@ typedef struct{
     Node *first;
 }List;
 
+
+
 //1)
 bintree *createBT(Info *info);
 //2)
@@ -48,6 +50,9 @@ List *postOrderTraversalBT(bintree *bt);
 void auxPostOrderTraversalBT(bintree *bt, List *list);
 //12)
 List *levelOrderTraversalBT(bintree *bt);
+//13)
+bintree *treeFromInOrderPreOrderBT(List *preOrder , List *inOrder);
+void auxTreeFromInOrderPreOrderBT(bintree *bt,List *preOrder, List *inOrder);
 
 Info *createInfo(int info);
 void insertLeftBT(bintree *bt, Info *info);

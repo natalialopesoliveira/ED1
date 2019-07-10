@@ -2,7 +2,7 @@
 #define __LIST_H__
 
 typedef struct{
-    char info;
+    int info;
 }Info;
 
 typedef struct tno{
@@ -17,12 +17,14 @@ typedef struct{
 
 Node *createNode();
 // Info *createInfo();
-Info *createInfo(char inf);
+Info *createInfo(int inf);
 List *createList();
 void insertLast(List *list, Info *info);
 Info *removeFirst(List *list);
 void posList(List *list, int pos);
 Info *infoList(List *list);
 void printList(List *list);
+void deleteList(List *list);
+void auxDeleteList(Node *ptr);
 
 #endif //__LIST_H__

@@ -155,14 +155,37 @@ void auxPostOrderTraversalBT(bintree *bt, List *list){
 List *levelOrderTraversalBT(bintree *bt){
     if(!bt) return NULL;
     List *list;
+    List *traverse;
+    traverse = createList();
     list = createList();
-    if(!list) return NULL;
-    Info *info = createInfo(rootBT(bt));
+    Node *ptr;
+    if(!list || !traverse) return NULL;
     if(!info){
         free(list);
+        free(traverse);
         return NULL;
     }
-    
+    insertLast(traverse, createInfo(rootBT(bt));
+    while(traverse->first){
+        insertLast(list,removeFirst(traverse));
+        if(leftBT(bt)){
+            insertLast(traverse,createInfo(root(leftBT(bt))->info));
+        }
+        if(rightBT(bt)){
+            insertLast(traverse,createInfo(root(rightBT(bt))->info));
+        }
+
+    }
+    deleteList(traverse);
+    return list;
+}
+
+//13)
+bintree *treeFromInOrderPreOrderBT(List *preOrder, List *inOrder){
+    if(!preOrder || !inOrder) return NULL;
+    bintree *bt = createBT(createInfo(preOrder->first->info));
+    if(!bt) return NULL;
+    auxTreeFromInOrderPreOrderBT(bt, )
 }
 //outros
 
